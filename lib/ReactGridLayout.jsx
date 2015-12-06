@@ -372,6 +372,7 @@ class ReactGridLayout extends React.Component {
 
     return (
       <GridItem
+        className={child.props.className}
         containerWidth={this.state.width}
         cols={this.props.cols}
         margin={this.props.margin}
