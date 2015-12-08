@@ -197,14 +197,14 @@ class ReactGridLayout extends React.Component {
 
   /**
    * When dragging starts
-   * @param {Number} i Index of the child
+   * @param {String} i Id of the child
    * @param {Number} x X position of the move
    * @param {Number} y Y position of the move
    * @param {Event} e The mousedown event
    * @param {Element} element The current dragging DOM element
    * @param {Object} position Drag information
    */
-  onDragStart = (i: number, x: number, y: number, {e, element}: DragEvent) => {
+  onDragStart = (i: string, x: number, y: number, {e, element}: DragEvent) => {
     var layout = this.state.layout;
     var l = getLayoutItem(layout, i);
     if (!l) return;
@@ -215,14 +215,14 @@ class ReactGridLayout extends React.Component {
   };
   /**
    * Each drag movement create a new dragelement and move the element to the dragged location
-   * @param {Number} i Index of the child
+   * @param {String} i Id of the child
    * @param {Number} x X position of the move
    * @param {Number} y Y position of the move
    * @param {Event} e The mousedown event
    * @param {Element} element The current dragging DOM element
    * @param {Object} position Drag information
    */
-  onDrag = (i: number, x: number, y: number, {e, element}: DragEvent) => {
+  onDrag = (i: string, x: number, y: number, {e, element}: DragEvent) => {
     var layout = this.state.layout;
     var l = getLayoutItem(layout, i);
     if (!l) return;
@@ -247,7 +247,7 @@ class ReactGridLayout extends React.Component {
 
   /**
    * When dragging stops, figure out which position the element is closest to and update its x and y.
-   * @param  {Number} i Index of the child.
+   * @param  {String} i Index of the child.
    * @param {Number} i Index of the child
    * @param {Number} x X position of the move
    * @param {Number} y Y position of the move
@@ -255,7 +255,7 @@ class ReactGridLayout extends React.Component {
    * @param {Element} element The current dragging DOM element
    * @param {Object} position Drag information
    */
-  onDragStop = (i: number, x: number, y: number, {e, element}: DragEvent) => {
+  onDragStop = (i: string, x: number, y: number, {e, element}: DragEvent) => {
     var layout = this.state.layout;
     var l = getLayoutItem(layout, i);
     if (!l) return;
@@ -274,7 +274,7 @@ class ReactGridLayout extends React.Component {
     });
   };
 
-  onResizeStart = (i: number, w: number, h: number, {e, element}: ResizeEvent) => {
+  onResizeStart = (i: string, w: number, h: number, {e, element}: ResizeEvent) => {
     var layout = this.state.layout;
     var l = getLayoutItem(layout, i);
     if (!l) return;
@@ -284,7 +284,7 @@ class ReactGridLayout extends React.Component {
     this.props.onResizeStart(layout, l, l, null, e, element);
   };
 
-  onResize = (i: number, w: number, h: number, {e, element}: ResizeEvent) => {
+  onResize = (i: string, w: number, h: number, {e, element}: ResizeEvent) => {
     var layout = this.state.layout;
     var l = getLayoutItem(layout, i);
     if (!l) return;
@@ -305,7 +305,7 @@ class ReactGridLayout extends React.Component {
     this.setState({ layout: compact(layout, this.props.verticalCompact), activeDrag: placeholder });
   };
 
-  onResizeStop = (i: number, w: number, h: number, {e, element}: ResizeEvent) => {
+  onResizeStop = (i: string, w: number, h: number, {e, element}: ResizeEvent) => {
     var layout = this.state.layout;
     var l = getLayoutItem(layout, i);
     var oldL = this.state.oldResizeItem;
@@ -352,7 +352,7 @@ class ReactGridLayout extends React.Component {
   /**
    * Given a grid item, set its style attributes & surround in a <Draggable>.
    * @param  {Element} child React element.
-   * @param  {Number}  i     Index of element.
+   * @param  {string}  i     Index of element.
    * @return {Element}       Element wrapped in draggable and properly placed.
    */
   processGridItem(child: ReactElement): ?ReactElement {
